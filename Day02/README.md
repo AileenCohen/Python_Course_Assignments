@@ -15,7 +15,7 @@ PoolCalculatorApp.py = is my second program. This program helps you pool DNA sam
 
 ## Prompts used:
 Make a GUI from the provided code and use the tk library with 3 ways to provide the input including a command line, an input function and a GUI input, let me choose which one to use when I'm running the code.
-The basic code (seen in "Basic_code_Assignment2.py" which I wrote):
+The basic code (seen in "Basic_code_Assignment2.py"):
 ```
 import pandas as pd
 import numpy as np
