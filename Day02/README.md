@@ -6,15 +6,16 @@ title: About
 dna_utils and dna_gui are the assignment done in class. The point of the program is to translate and predict the disorder tendencies of your provided dna sequence.
 
 PoolCalculatorApp.py = is my second program. This program helps you pool DNA samples at desired concentrations. You provide a CSV with your sample names and measured DNA concentrations, and the target concentrations for your pools. The program calculates exactly how much to take from each sample to achieve the target pool concentrations.
-**You have an example csv file ("Qubit_data_example") to run the program.**
+
+**You have an old csv file of mine ("Qubit_data_example") to run the program.**
 
 
 ## AI used:
 **Copilot**
 
 ## Prompts used:
-1. Make a GUI from the provided code and use the tk library with 3 ways to provide the input including a command line, an input function and a GUI input, let me choose which one to use when I'm running the code.
-The basic code (seen in "Basic_code_Assignment2.py"):
+Make a GUI from the provided code and use the tk library with 3 ways to provide the input including a command line, an input function and a GUI input, let me choose which one to use when I'm running the code.
+The basic code (seen in "Basic_code_Assignment2.py" which I wrote):
 ```
 import pandas as pd
 import numpy as np
