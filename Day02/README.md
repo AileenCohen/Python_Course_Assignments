@@ -8,7 +8,7 @@ dna_utils and dna_gui are the assignment done in class. The point of the program
 PoolCalculatorApp.py = is my second program. This program helps you pool DNA samples at desired concentrations. You provide a CSV with your sample names and measured DNA concentrations, and the target concentrations for your pools. The program calculates exactly how much to take from each sample to achieve the target pool concentrations.
 
 
-## AI used for Class written assignment:
+## AI used:
 **Copilot**
 
 ## Prompts used:
