@@ -82,6 +82,8 @@ def clear_input():
     disorder_label.config(text="")
     length_label.config(text="Length: 0")
 
+
+
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("DNA Sequence Validator & Translator")
