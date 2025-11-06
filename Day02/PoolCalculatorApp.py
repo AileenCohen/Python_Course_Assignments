@@ -1,37 +1,11 @@
 import pandas as pd
-import numpy as np
 import tkinter as tk
 from tkinter import filedialog, messagebox
 import argparse
 import sys
+from Basic_code_Assignment2 import calculate_pool_concentrations_from_qubit_data
 
-def calculate_pool_concentrations_from_qubit_data(conc_file, pool_dict):
-    samples = conc_file["Sample Name"].astype(str).tolist()
-    concentrations = pd.to_numeric(conc_file["Original Sample Conc."], errors='coerce')
-
-    pools = sorted(pool_dict.values())
-    amount_to_take = {}
-
-    for i, conc in enumerate(concentrations):
-        if pd.isna(conc) or conc == 0:
-            amount_to_take[samples[i]] = np.nan
-            continue
-
-        assigned = False
-        for pool in pools:
-            if conc < pool:
-                amount_to_take[samples[i]] = pool / conc
-                assigned = True
-                break
-
-        if not assigned:
-            amount_to_take[samples[i]] = pools[-1] / conc
-
-    plate = pd.DataFrame(list(amount_to_take.items()), columns=['Sample', 'Amount_to_Take'])
-    return plate
-
-
-
+# ---------------- GUI ----------------
 def start_gui():
     def run_calculation():
         file_path = file_path_var.get()
@@ -80,8 +54,7 @@ def start_gui():
 
     root.mainloop()
 
-
-
+# ---------------- Interactive ----------------
 def interactive_mode():
     file_path = input("Enter the path to your CSV file: ").strip()
     pool_values_str = input("Enter pool values separated by commas (e.g. 5, 30, 100): ").strip()
@@ -93,8 +66,7 @@ def interactive_mode():
     print("\nResult:\n")
     print(result)
 
-
-
+# ---------------- CLI ----------------
 def cli_mode(args):
     if not args.file or not args.pools:
         print("Error: --file and --pools are required in CLI mode.")
@@ -105,8 +77,7 @@ def cli_mode(args):
     result = calculate_pool_concentrations_from_qubit_data(df, pool_dict)
     print(result)
 
-
-
+# ---------------- Mode selection ----------------
 def choose_mode():
     print("\nSelect mode:")
     print("1. Interactive (manual input)")
@@ -120,16 +91,14 @@ def choose_mode():
         else:
             print("Invalid choice. Please try again.")
 
-
-
+# ---------------- Main ----------------
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Pool Concentration Calculator")
-    parser.add_argument("--mode", choices=["interactive", "cli", "gui"], help="Choose input mode: interactive / cli / gui")
-    parser.add_argument("--file", help="Path to the CSV file (CLI mode only)")
+    parser.add_argument("--mode", choices=["interactive", "cli", "gui"], help="Choose input mode")
+    parser.add_argument("--file", help="Path to CSV file (CLI mode only)")
     parser.add_argument("--pools", nargs="+", type=float, help="Pool concentration values (CLI mode only)")
     args = parser.parse_args()
 
-    # If no mode was provided, ask user interactively
     mode = args.mode or choose_mode()
 
     if mode == "interactive":
