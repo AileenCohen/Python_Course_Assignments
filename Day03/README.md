@@ -23,7 +23,7 @@ PoolCalculatorApp.py: The main application runner, providing GUI, CLI, interacti
 
 test_calculations.py: Pytest unit tests for validating the code.
 
-Qubit_data_example.csv: Sample data file for testing the application.
+Qubit_data_example.csv: Sample data file for testing the application. **This Application requires a CSV file of concentrations!**
 
 requirements.txt: Lists all required Python packages for easy installation.
 
