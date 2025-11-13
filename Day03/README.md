@@ -5,7 +5,7 @@ This solution fulfills the Day03 assignment requirements, including the separati
 
 ## Project Structure
 
-Basic_cpde_Assignment.py: Contains the core calculation function.
+Basic_code_Assignment.py: Contains the core calculation function.
 
 PoolCalculatorApp.py: The main application runner, providing GUI, CLI, interactive modes, and a dedicated test runner.
 
