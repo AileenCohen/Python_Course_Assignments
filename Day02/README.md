@@ -1,14 +1,24 @@
----
-layout: default
-title: About
----
-## What are these programs in this folder:
-dna_utils and dna_gui are the assignment done in class. The point of the program is to translate and predict the disorder tendencies of your provided dna sequence.
 
+## What are these programs in this folder:
+---
+dna_utils and dna_gui are the assignment done in class. The point of the program is to translate and predict the disorder tendencies of your provided dna sequence.
+### Disorder Prediction in Proteins
+Proteins can be ordered, disordered, or a mix of both in different parts of their structure:
+
+**Ordered proteins:** Have a stable and well-defined three-dimensional structure.
+
+**Disordered proteins:** Lack a fixed shape. Think of them as “wet noodles”.
+How can you ise the disorder feature?
+
+In my case, I’m part of *Prof. Naama Barkai's lab*, where we study the order within disorder. Our goal is to identify the potential function of the disordered parts of proteins.
+Knowing if a protein has disordered tendencies (or whether it’s a bit of a wet noodle) can help decide which proteins to investigate further.
+
+--- 
 PoolCalculatorApp.py = is my second program. This program helps you pool DNA samples at desired concentrations. You provide a CSV with your sample names and measured DNA concentrations, and the target concentrations for your pools. The program calculates exactly how much to take from each sample to achieve the target pool concentrations.
 
 **You have an old csv file of mine ("Qubit_data_example") to run the program.**
 
+---
 
 ## AI used:
 **Copilot**
