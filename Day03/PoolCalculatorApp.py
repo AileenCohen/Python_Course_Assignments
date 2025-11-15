@@ -9,11 +9,8 @@ from Basic_code_Assignment2 import calculate_pool_concentrations_from_qubit_data
 
 # ---------------- GUI ----------------
 def start_gui():
-    # Fix for file browsing issues: 
-    # Initialize the root window but immediately hide it, 
-    # so only the file dialog is visible and functional.
     root = tk.Tk()
-    root.withdraw() # Hides the main unnecessary window
+    root.withdraw() 
 
     def run_calculation():
         file_path = file_path_var.get()
@@ -26,9 +23,9 @@ def start_gui():
         try:
             # Check if pool values string is empty
             if not pool_values_str.strip():
-                 messagebox.showerror("Error", "Pool values cannot be empty.")
-                 return
-                 
+                messagebox.showerror("Error", "Pool values cannot be empty.")
+                return
+                
             pool_values = [float(v.strip()) for v in pool_values_str.split(",")]
         except ValueError:
             messagebox.showerror("Error", "Invalid pool values. Use numbers separated by commas (e.g., 5, 30, 100).")
@@ -79,6 +76,7 @@ def start_gui():
 
 # ---------------- Interactive ----------------
 def interactive_mode():
+
     try:
         file_path = input("Enter the path to your CSV file: ").strip()
         pool_values_str = input("Enter pool values separated by commas (e.g. 5, 30, 100): ").strip()
@@ -107,14 +105,21 @@ def interactive_mode():
 def cli_mode(args):
     try:
         if not args.file or not args.pools:
-            # If the mode was explicitly set to CLI but arguments are missing, print error
-            print("Instead, run this line: python PoolCalculatorApp.py --file **INSERT YOUR FILE PATH** --pools **INSERT POOL SIZES WITH A SPACE**")
+
+            print("\n--- CLI Mode Usage ---")
+            print("CLI mode requires arguments to be provided when the script starts.")
+            print("Please run the script again using the following format:")
+            print(f"python {os.path.basename(sys.argv[0])} --file **INSERT YOUR FILE PATH** --pools **INSERT POOL SIZES WITH A SPACE**")
+            print("Example: python PoolCalculatorApp.py --file data.csv --pools 5 30 100")
+            print("\nExiting...")
             sys.exit(1)
 
+        # Execution for valid CLI arguments
         pool_dict = {f"pool_{i+1}": val for i, val in enumerate(args.pools)}
         df = pd.read_csv(args.file)
         result = calculate_pool_concentrations_from_qubit_data(df, pool_dict)
         print(result.to_string(index=False))
+        
     except FileNotFoundError:
         print(f"\nError: File not found at '{args.file}'.")
         sys.exit(1)
@@ -124,6 +129,7 @@ def cli_mode(args):
 
 # ---------------- Pytest Test Mode ----------------
 def test_mode():
+
     """Runs all unit tests defined in test_calculations.py using pytest."""
     print("\n--- Running Pytest Unit Tests ---\n")
     
@@ -144,7 +150,7 @@ def test_mode():
         print("\n--- ALL TESTS PASSED SUCCESSFULLY! ---")
     else:
         print(f"\n--- TESTS FAILED (Exit Code: {exit_code}) ---")
-        
+
 # ---------------- Mode selection ----------------
 def choose_mode():
     print("\nSelect Mode:")
@@ -168,19 +174,25 @@ if __name__ == "__main__":
     parser.add_argument("--pools", nargs="+", type=float, help="Pool concentration values (CLI mode only)")
     args = parser.parse_args()
 
-    # --- CLI Mode Fix ---
-    # Check if CLI-specific arguments are provided without the --mode cli flag.
-    # If they are, force the mode to 'cli'. This is what allows command line execution to work directly.
+
+    mode = args.mode 
+
     if args.file and args.pools:
         mode = "cli"
-    # Otherwise, use the --mode flag or go to interactive selection.
-    else:
-        mode = args.mode or choose_mode()
+
+    if not mode:
+
+        if args.file or args.pools:
+             print("Error: In CLI mode, both --file and --pools arguments must be provided.")
+             sys.exit(1)
+             
+
+        mode = choose_mode()
 
     if mode == "interactive":
         interactive_mode()
     elif mode == "cli":
-        cli_mode(args)
+        cli_mode(args) 
     elif mode == "gui":
         start_gui()
     elif mode == "test":
