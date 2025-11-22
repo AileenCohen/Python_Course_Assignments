@@ -31,7 +31,7 @@ def search_jaspar_motifs(keyword: str) -> List[Dict[str, str]]:
             if i >= 10: 
                 break
             
-            download_url = f"{JASPAR_BASE_URL}motif/{motif.get('matrix_id')}/?fmt=pfm"
+            download_url = f"{JASPAR_BASE_URL}matrix/{motif.get('matrix_id')}/?format=pfm"
             
             results.append({
                 "id": str(i + 1),
