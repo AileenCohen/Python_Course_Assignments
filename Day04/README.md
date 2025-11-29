@@ -51,3 +51,6 @@ Gemini
 - Build me a function that searches JASPAR for the best possible motifs of human TFs (only) of my choosing. I provide a TF's name and the input, and I get the top PFM results as the output, allowing me to download the PFM of my choice.
 - Add a gui to this function in which I can input my TF of choice and get the list of outputs to choose what to download.
 - Separate the search and download function from the gui function, separate that from the calling of the function.
+
+### Updates:
+- 22.11.2025: Fixed a download bug after getting a note.
