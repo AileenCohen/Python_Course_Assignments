@@ -97,5 +97,4 @@ The program generates a **6-figure dashboard** providing a 360° view of the cou
 - Engagement and punctuality metrics
 - A comprehensive multi-figure visual dashboard
 
-Designed for educators who want **data-driven insight**, not just grades.
 
